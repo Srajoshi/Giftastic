@@ -1,18 +1,18 @@
 // Initial array of drinks
-var drinks = ["Beer", "Bloody Mary", "Red Wine", "Champagne", "Pina Colada", "whiskey", "Vodka", "Gin"];
+var drinks = ["Beer", "Bloody Mary", "Red Wine", "Champagne", "Pina Colada", "whiskey", "Vodka", "Gin", "coffee", "Martini", "Margaritas", "Cosmopolitan", "Mojitos", "Rum"];
 
 // Function for displaying movie data
 function renderButtons() {
 
   // Delete the content inside thedrinks-buttons div prior to adding new buttons
-  $("#drinks-buttons").empty();
+ $("#drinks-buttons").empty();
   // (this is necessary otherwise you will have repeat buttons)
 
   // Loop through the array of drinks, then generate buttons for each drink in the array
   for (i = 0; i< drinks.length; i++) {
 
     var button = $("<button>");
-    button.addClass("drinks");
+    button.addClass("drinks btn-outline-info");
     button.attr("data-drink", drinks[i]);
     button.text(drinks[i]);
     $("#drinks-buttons").append(button);
@@ -20,18 +20,32 @@ function renderButtons() {
   }
 
 }
-
 // This function handles events where one button is clicked
 // $("#add-drink").on("click", function() {
 
-//   // CODE 
+$("#submit-btn").on("click", function(event) {
+        // event.preventDefault() prevents the form from trying to submit itself.
+        // We're using a form so that the user can hit enter instead of clicking the button if they want
+        event.preventDefault();
+
+        // This line will grab the text from the input box
+        var newDrink = $("#drink-input").val().trim();
+        // The movie from the textbox is then added to our array
+        drinks.push(newDrink);
+
+        // calling renderButtons which handles the processing of our movie array("#drink-input").empty();
+        renderButtons();
+        $("#search-bar").val("")
+        // $('.form-control').attr('value',"");
+      });
+ 
 
 // });
 
 // Calling the renderButtons function to display the initial list of drinks
 renderButtons();
 
-$("button").on("click", function() {
+$(document).on("click", ".drinks", function() {
   // event.preventDefault();
 
   // $("#buttons").empty();
@@ -48,7 +62,7 @@ $.ajax({
     console.log(response);
     var results = response.data
     // clear the display div
-    $("#gifs-display").empty();
+    // $("#gifs-display").empty();
 
     for (var i = 0; i < results.length; i++) {
 
@@ -62,7 +76,9 @@ $.ajax({
           // Storing the result item's rating
           var rating = results[i].rating;
           console.log(rating);
+          var title = results[i].title;
           // Creating a paragraph tag with the result item's rating
+          var p1 = $("<h6>").text("Title: " + title);
           var p = $("<p>").text("Rating: " + rating);
 
           // Creating an image tag
@@ -81,11 +97,12 @@ $.ajax({
           console.log(drinkImage)
 
           // Appending the paragraph and drinkImage we created to the "gifDiv" div we created
+          gifDiv.append(p1);
           gifDiv.append(p);
           gifDiv.append(drinkImage);
 
           // Appending the gifDiv to the "#gifs-display" div in the HTML
-          $("#gifs-display").append(gifDiv);
+          $("#gifs-display").prepend(gifDiv);
         }
 
         $(".gifs").on("click", function() {

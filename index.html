@@ -13,44 +13,37 @@
 
 <body>
 
-
   <div class="jumbotron jumbotron-fluid text-center bg-secondary text-info">
     <div class="container">
-      <h1 class="display-4">Giftastic</h1>
+      <h1 class="display-title">Giftastic</h1>
     </div>
   </div>
-  <div class="row">
-
-    <div class="col 9 ml-3">
+  <div class="card">
+    <div class="card-body">
       <div id="drinks-buttons">placeholder
       </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-12 drinks-gifs" id="gifs-display">Placeholder
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-3">
-      <div class="card-body">
-        <label for="search-bar">
-          <h5>Enter your drink</h5>
-        </label>
-        <input type="text" class="form-control" data="drink-search" id="drink-input">
-        <div class="row">
-          <div class="class card-body">
-            <button class="btn btn-outline-info" id="submit-btn">Submit Search</button>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
-  <!-- <form id="drinks-form">
-        <label for="drinks-input">Add your drink!</label>
-        <input type="text" id="drinks-input">
-      </form>
-    </div> -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 drinks-gifs" id="gifs-display">
+        <!-- Area to display gifs -->
+      </div>
+      <div class="col-sm-3">
+        <div class="card-body text-center">
+          <label for="search-bar">
+            <h5>Enter your drink:</h5>
+          </label>
+        </div>
+          <input type="text" class="form-control" data="drink-search" id="drink-input">
+          <div class="card-body">
+            <button class="btn btn-outline-info" id="submit-btn">Submit Search</button>
+          </div>
+    
+      </div>
+    </div>
+  </div>
 
   <!-- remove 'slim' in js tag -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
